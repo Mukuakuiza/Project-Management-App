@@ -24,10 +24,28 @@ function App() {
     });
   } 
 
+
+  //finishes the adding project, entered the project
+  function handleAddProjectInputs(projectData){
+    setProjectsState(prevState =>{
+      const newProject = {
+        ...projectData,
+          id: Math.random()
+      }
+
+        return{
+          ...prevState,
+          projects: [...prevState.projects, newProject]
+        }
+    })
+  }
+
+  console.log(projectsState)
+
   let renderContent;
   
   if (projectsState.selectProjectId === null) {
-      renderContent = <NewProject/>
+      renderContent = <NewProject  addProject={handleAddProjectInputs}/>
   } else if(projectsState.selectProjectId === undefined){
       renderContent =  <NoProjectSelected startAddProject={handleStartAddProject}/>
   }
