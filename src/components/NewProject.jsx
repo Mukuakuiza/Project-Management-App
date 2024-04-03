@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import Input from "./Input.jsx";
 import Model from "./Model.jsx";
-const NewProject = ({addProject}) => {
+
+const NewProject = ({addProject, onCancel}) => {
 
     //using refs to collect/read the inputs instead of usesState
     const modal = useRef();
@@ -40,7 +41,7 @@ const NewProject = ({addProject}) => {
             </Model>
             <div className="w-[35rem] mt-16">
                 <menu className="flex items-center justify-end gap-4 my-4">
-                    <li><button className=" px-6 py-2 rounded-md bg-red-800 text-stone-50 hover:text-stone-50 hover:bg-red-900">Cancel</button></li>
+                    <li><button onClick={onCancel} className=" px-6 py-2 rounded-md bg-red-800 text-stone-50 hover:text-stone-50 hover:bg-red-900">Cancel</button></li>
                     <li><button onClick={handleSave} className="px-6 py-2 rounded-md bg-emerald-950 text-stone-50 hover:bg-stone-950">
                     Save
                     </button></li>
