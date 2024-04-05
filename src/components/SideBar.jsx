@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-const SideBar = ({startAddProject, projects}) => {
+const SideBar = ({startAddProject, projects, onSelectProject, selectedProjectID}) => {
     return (
         <aside className='w-1/3 px-8 py-16 bg-emerald-950 text-white md:w-72 rounded-r-xl'>
             <h2 className='mb-8 font-bold uppercase md:text-xl text-yellow-50'>List of Projects</h2>
@@ -9,11 +9,23 @@ const SideBar = ({startAddProject, projects}) => {
             </div>
 
             <ul className="mt-8">
-                {projects.map(project => <li key={project.id}>
-                    <button className="w-full text-left px-2 py-1 my-1 text-stone-400 hover:text-white">
-                        {project.title}
-                    </button>
-                </li>)}
+                {projects.map((project) =>{
+                    let styleClass = "w-full text-left px-2 py-1 my-1 rounded-sm  hover:text-white";
+
+                    if (project.id === selectedProjectID) {
+                        styleClass += ' bg-stone-800 text-stone-200'
+                    } else {
+                        styleClass += ' text-stone-400'
+                    }
+
+                    return(
+                        <li key={project.id}>
+                            <button onClick={() => onSelectProject(project.id)} className={styleClass}>
+                                {project.title}
+                            </button>
+                        </li>)}
+                    )
+                }  
             </ul>
         </aside>
     );
