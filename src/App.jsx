@@ -67,6 +67,9 @@ function App() {
         return{
           ...prevState,
           selectProjectId: undefined,
+          //if the ID does not much means that it isn't the Id that has to be deleted,
+          // therefore return true and keep the item
+          // In case they ID much then the item has to be deleted 
           projects: prevState.projects.filter((project)=> project.id !== prevState.selectProjectId)
         };
     });
