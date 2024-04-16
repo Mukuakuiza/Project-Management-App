@@ -12,7 +12,8 @@ function App() {
   //or select any project
   const [projectsState, setProjectsState] = useState({
     selectProjectId: undefined,
-    projects:[]
+    projects:[],
+    tasks: [],
   });
 
   //handle the add project when it is null
@@ -75,10 +76,33 @@ function App() {
     });
   } 
 
+  // add a task to the list 
+  function handleAddTask(text){
+    setProjectsState(prevState =>{
+      const taskID = Math.random();
+      const newTask = {
+        text: text,
+        projectID: prevState.selectProjectId,
+        id: taskID
+      }
+
+        return{
+          ...prevState,
+          tasks: [newTask, ...prevState.tasks]
+        }
+    })
+  }
+
+  function handleDeleteTask(){
+
+  }
+
   //finding the selected project 
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectProjectId)
   
-  let renderContent = <SelectedProject project={selectedProject} deleteProject={handleDeleteProject}/>;
+  let renderContent = <SelectedProject project={selectedProject} 
+  deleteProject={handleDeleteProject} addTask={handleAddTask} 
+  onDeleteTask={handleDeleteTask} tasks={projectsState.tasks}/>;
   
   if (projectsState.selectProjectId === null) {
       renderContent = <NewProject  addProject={handleAddProjectInputs} onCancel={handleCancelAddProject}/>
