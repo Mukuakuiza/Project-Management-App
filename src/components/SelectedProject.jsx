@@ -1,5 +1,5 @@
 import Tasks from "./add-task/Tasks.jsx";
-const SelectedProject = ({project, deleteProject}) => {
+const SelectedProject = ({project, deleteProject, addTask, onDeleteTask, tasks}) => {
 
     const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US', {
         year: 'numeric',
@@ -17,7 +17,7 @@ const SelectedProject = ({project, deleteProject}) => {
                 <p className="mb-4 text-stone-400">{formattedDate}</p>
                 <p className="text-stone-600 whitespace-pre-wrap">{project.description}</p>
             </header>
-            <Tasks/>
+            <Tasks addTask={addTask} onDelete={onDeleteTask} tasks={tasks}/>
         </div>
     );
 };
