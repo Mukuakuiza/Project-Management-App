@@ -9,6 +9,9 @@ const NewTask = ({onAdd}) => {
 
     //forward the entered value to the app 
     function handleClick(){
+        if(enteredTask.trim() === ''){
+            return;
+        }
         onAdd(enteredTask)
         setEnteredTask('');
 

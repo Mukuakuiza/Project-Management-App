@@ -13,7 +13,7 @@ const SideBar = ({startAddProject, projects, onSelectProject, selectedProjectID}
                     let styleClass = "w-full text-left px-2 py-1 my-1 rounded-sm  hover:text-white";
 
                     if (project.id === selectedProjectID) {
-                        styleClass += ' bg-stone-800 text-stone-200'
+                        styleClass += ' bg-stone-900 rounded-sm text-stone-200'
                     } else {
                         styleClass += ' text-stone-400'
                     }

@@ -33,7 +33,7 @@ function App() {
       const projectID = Math.random();
       const newProject = {
         ...projectData,
-          id: projectData
+          id: projectID
       }
 
         return{
@@ -71,7 +71,10 @@ function App() {
           //if the ID does not much means that it isn't the Id that has to be deleted,
           // therefore return true and keep the item
           // In case they ID much then the item has to be deleted 
-          projects: prevState.projects.filter((project)=> project.id !== prevState.selectProjectId)
+          projects: prevState.projects.filter((project)=> project.id !== prevState.selectProjectId),
+
+          // Delete also the task when the project is deleted
+          tasks: prevState.tasks.filter((task) => task.projectID !== prevState.selectProjectId)
         };
     });
   } 
@@ -93,8 +96,16 @@ function App() {
     })
   }
 
-  function handleDeleteTask(){
-
+  function handleDeleteTask(id){
+     setProjectsState(prevState=> {
+        return{
+          ...prevState,
+          //if the ID does not much means that it isn't the Id that has to be deleted,
+          // therefore return true and keep the item
+          // In case they ID much then the item has to be deleted 
+          tasks: prevState.tasks.filter((task)=> task.id !== id)
+        };
+    });
   }
 
   //finding the selected project 
@@ -115,6 +126,7 @@ function App() {
       <SideBar startAddProject={handleStartAddProject} 
       projects={projectsState.projects}
       onSelectProject={handleSelectProject}
+      selectedProjectID={projectsState.selectProjectId}
       />
       {renderContent}
     </main>
